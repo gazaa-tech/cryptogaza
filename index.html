@@ -3,20 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عالم العملات الرقمية - اخر اخبار العملات والاسهم</title>
+<title>عالم العملات الرقمية - اخر اخبار البيتكوين والاسهم</title>
 <style>
-  body { font-family: 'Tahoma'; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 50px; }
-  h1 { color: #22c55e; font-size: 36px; }
-  .card { background: #1e293b; padding: 25px; border-radius: 15px; margin: 20px auto; max-width: 600px; }
+  body { font-family: 'Tahoma'; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 20px; margin: 0; }
+  h1 { color: #22c55e; font-size: 32px; margin-bottom: 10px; }
+  .card { background: rgba(30,41,59,0.8); padding: 25px; border-radius: 15px; margin: 20px auto; max-width: 600px; border: 1px solid #22c55e; }
+  .price { font-size: 28px; color: #facc15; font-weight: bold; }
+  .whatsapp-btn { display: inline-block; background: #25D366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-size: 18px; font-weight: bold; margin-top: 15px; }
+  .whatsapp-btn:hover { background: #20b858; }
+  footer { margin-top: 30px; font-size: 14px; opacity: 0.8; }
 </style>
 </head>
 <body>
+
 <h1>🚀 عالم العملات الرقمية</h1>
+
 <div class="card">
   <h2>مرحبا بك في موقعنا</h2>
   <p>هنا اخر اخبار البيتكوين والعملات الرقمية والاسهم لحظة بلحظة</p>
   <p>الموقع لسه جديد ... انتظرنا قريبا</p>
 </div>
+
+<div class="card">
+  <h2>💰 سعر البيتكوين الان</h2>
+  <p class="price" id="btc-price">جاري التحميل...</p>
+</div>
+
+<div class="card">
+  <h2>📱 تواصل معنا</h2>
+  <p>لأي استفسار او اعلان تواصل معنا مباشرة على واتساب</p>
+  <a href="https://wa.me/972599014842" class="whatsapp-btn">تواصل واتساب</a>
+  <p style="font-size:12px; margin-top:10px;">* غير الرقم لرقمك *</p>
+</div>
+
 <footer>© 2026 عالم العملات الرقمية - من غزة</footer>
+
+<script>
+  // جلب سعر البيتكوين
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('btc-price').innerHTML = '$' + data.bitcoin.usd.toLocaleString();
+  })
+  .catch(() => {
+    document.getElementById('btc-price').innerHTML = 'تعذر التحميل';
+  });
+</script>
+
 </body>
 </html>

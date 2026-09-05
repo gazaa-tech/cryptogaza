@@ -3,71 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حاسبة التداول - عالم العملات الرقمية</title>
+<title>عالم العملات الرقمية</title>
 <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-    body{background:#0a0f1e;color:#fff;padding:20px}
-    .container{max-width:600px;margin:40px auto;background:#121a2f;border-radius:16px;padding:30px;box-shadow:0 0 20px rgba(0,255,255,0.1)}
+    body{background:#0a0f1e;color:#fff;padding:0}
+    
+    /* القائمة الجديدة */
+    .navbar{background:#121a2f;padding:15px;display:flex;justify-content:center;gap:20px;border-bottom:1px solid #2a3a6b}
+    .navbar button{background:none;border:none;color:#aaa;font-size:16px;cursor:pointer;padding:10px 20px;border-radius:8px}
+    .navbar button.active{color:#00e5ff;background:#1c2642}
+    
+    .container{max-width:900px;margin:20px auto;background:#121a2f;border-radius:16px;padding:30px;box-shadow:0 0 20px rgba(0,255,255,0.1)}
     h1{text-align:center;color:#00e5ff;margin-bottom:20px}
     .input-group{margin-bottom:20px}
     label{display:block;margin-bottom:8px;color:#aaa;font-size:14px}
     input{width:100%;padding:12px;background:#1c2642;border:1px solid #2a3a6b;border-radius:8px;color:#fff;font-size:16px}
     input:focus{outline:none;border-color:#00e5ff}
-    button{width:100%;padding:14px;background:linear-gradient(90deg,#00e5ff,#00b8d4);border:none;border-radius:8px;color:#000;font-weight:bold;font-size:16px;cursor:pointer;margin-top:10px}
-    button:hover{opacity:0.9}
+    button.calc{width:100%;padding:14px;background:linear-gradient(90deg,#00e5ff,#00b8d4);border:none;border-radius:8px;color:#000;font-weight:bold;font-size:16px;cursor:pointer;margin-top:10px}
+    button.calc:hover{opacity:0.9}
     .result{background:#1c2642;padding:15px;border-radius:8px;margin-top:20px;border-right:3px solid #00e5ff}
     .result p{margin:8px 0;font-size:15px}
     .profit{color:#00ff88}.loss{color:#ff5252}
-</style>
-</head>
-<body>
-<div class="container">
-    <h1>حاسبة التداول</h1>
-    
-    <div class="input-group">
-        <label>رأس المال بالدولار</label>
-        <input type="number" id="capital" placeholder="1000">
-    </div>
-    
-    <div class="input-group">
-        <label>سعر الدخول</label>
-        <input type="number" id="entry" placeholder="50000">
-    </div>
-    
-    <div class="input-group">
-        <label>سعر الخروج</label>
-        <input type="number" id="exit" placeholder="55000">
-    </div>
-    
-    <div class="input-group">
-        <label>الرافعة المالية</label>
-        <input type="number" id="leverage" placeholder="10">
-    </div>
-    
-    <button onclick="calculate()">احسب الربح والخسارة</button>
-    
-    <div class="result" id="result" style="display:none">
-        <p>الربح/الخسارة: <span id="pnl"></span></p>
-        <p>نسبة الربح: <span id="percent"></span></p>
-    </div>
-</div>
+    .page{display:none}
+    .page.active{display:block}
 
-<script>
-function calculate(){
-    let capital = parseFloat(document.getElementById('capital').value);
-    let entry = parseFloat(document.getElementById('entry').value);
-    let exit = parseFloat(document.getElementById('exit').value);
-    let leverage = parseFloat(document.getElementById('leverage').value);
-    
-    let pnl = ((exit - entry) / entry) * capital * leverage;
-    let percent = ((exit - entry) / entry) * 100 * leverage;
-    
-    document.getElementById('result').style.display = 'block';
-    document.getElementById('pnl').innerHTML = pnl.toFixed(2) + '$';
-    document.getElementById('pnl').className = pnl >= 0 ? 'profit' : 'loss';
-    document.getElementById('percent').innerHTML = percent.toFixed(2) + '%';
-    document.getElementById('percent').className = percent >= 0 ? 'profit' : 'loss';
-}
-</script>
-</body>
-</html>
+    /* جدول الاسعار */
+    table{width:100%;border-collapse:collapse;margin-top:20px}
+    th,td{padding:12px;text-align:center;border-bottom:1px solid #2a3a6b}
+    th{color:#00e5ff}
+    .price-up{color:#00ff88}
+    .price-down{color:#ff5252}
+</style>
+</
